@@ -53,7 +53,7 @@ setResults((prev) => [
 ]);
 
     const response = await axios.post(
-      "http://localhost:8000/suggestion",
+      "https://sustainabilitytextilemodel.onrender.com/suggestion",
       payload,
       {
         headers: { "Content-Type": "application/json"  }
