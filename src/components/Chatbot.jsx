@@ -9,26 +9,28 @@ import bot from "../assets/bot.png"
 function Chatbot() {
   const [input, setInput] = useState("");
   const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+
 
 
   const sentences = [
-        "That is a great choice. I will provide you with sustainability steps so that the product is made with good quality.",
-        "Nice one, the fabric that you have chosen has high durability. However I will provide you with some sustainable methods so that the product is made with good quality.",
-        "Great pick! I’ll guide you with sustainable steps to ensure the product is made responsibly.",
-        "Nice choice! That material works well—I'll help you make it even more sustainable.",
-        "That's an excellent fabric selection. Let me suggest eco-friendly ways to improve its quality.",
-        "Wonderful choice! Let’s explore some sustainable practices you can follow during production.",
-        "Good one! This fabric already performs well—I can help you enhance its sustainability.",
-        "Nice selection. I'll share a few steps to make your product environmentally responsible.",
-        "That’s a solid pick! I'll give you sustainability tips to ensure the final product lasts long.",
-        "Great fabric! I’ll suggest a few green methods to help you make it more eco-friendly.",
-        "Good choice! With a few sustainable practices, you can improve both quality and durability.",
-        "Nice fabric selection! Let me help you apply sustainability techniques for better results.",
-        "That's a high-quality material. I'll give you some tips to keep your process sustainable.",
-        "Excellent choice! I’ll guide you through eco-friendly steps to ensure responsible production.",
-        "This is a durable option. I’ll help you improve its sustainability during manufacturing.",
-        "Great selection! Let’s make your product high-quality and planet-friendly with these tips.",
-        "Nice pick! I'll recommend sustainable measures that will improve the product’s overall performance."
+        "That is a great choice. I will provide you with sustainability steps so that the product is made with good quality.👕",
+        "Nice one, the fabric that you have chosen has high durability. However I will provide you with some sustainable methods so that the product is made with good quality.♻️",
+        "Great pick! I’ll guide you with sustainable steps to ensure the product is made responsibly.👗",
+        "Nice choice! That material works well—I'll help you make it even more sustainable.👕",
+        "That's an excellent fabric selection. Let me suggest eco-friendly ways to improve its quality.🧣",
+        "Wonderful choice! Let’s explore some sustainable practices you can follow during production.🪢",
+        "Good one! This fabric already performs well—I can help you enhance its sustainability.🧵",
+        "Nice selection. I'll share a few steps to make your product environmentally responsible.👍",
+        "That’s a solid pick! I'll give you sustainability tips to ensure the final product lasts long.🌿",
+        "Great fabric! I’ll suggest a few green methods to help you make it more eco-friendly.👜",
+        "Good choice! With a few sustainable practices, you can improve both quality and durability.✨",
+        "Nice fabric selection! Let me help you apply sustainability techniques for better results.😊",
+        "That's a high-quality material. I'll give you some tips to keep your process sustainable.🪡",
+        "Excellent choice! I’ll guide you through eco-friendly steps to ensure responsible production.👕",
+        "This is a durable option. I’ll help you improve its sustainability during manufacturing.🧶",
+        "Great selection! Let’s make your product high-quality and planet-friendly with these tips.🪢",
+        "Nice pick! I'll recommend sustainable measures that will improve the product’s overall performance.🧵"
     ]
 
 
@@ -63,6 +65,7 @@ setResults((prev) => [
   ...response.data.map(item => ({
     type: "bot",
     text: item.Suggestion,
+    Fabric: item.Fabric,
     randomSentence: getRandomSentence()
   }))
 ]);
@@ -136,7 +139,10 @@ setInput("");
     >
       {/* Show random sentence only for bot messages */}
       {msg.type === "bot" && msg.randomSentence && (
+        <>
+        <p>So, you have chosen <strong>{msg.Fabric}</strong> for your product!</p>
         <p className="mb-2 font-medium">{msg.randomSentence}</p>
+        </>
       )}
 
       {/* BOT MESSAGE → Render bullet points */}
